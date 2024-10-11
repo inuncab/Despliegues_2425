@@ -1,72 +1,43 @@
--- ¿Qué es el DNS y para qué sirve?
-DNS son las iniciales de Domain Name System (sistema de nombres de dominio) y es una tecnología basada en una base de datos que sirve para resolver nombres en las redes, es decir, para conocer la dirección IP de la máquina donde está alojado el dominio al que queremos acceder.
+## DNS (Domain Name System)
+El **DNS** es una tecnología que permite resolver nombres en redes, traduciendo nombres de dominio en direcciones IP para acceder a sitios web.
 
--- ¿Que es la resolucion de dominio y para que virve?
-Es el proceso de mapear dominios legibles para seres humanos
-La resolución de nombres de dominio permite navegar por Internet utilizando nombres de dominio en lugar de direcciones numéricas.
+## Resolución de dominio
+Proceso de traducir dominios legibles por humanos a direcciones IP, facilitando la navegación por Internet.
 
-El Servicio de Informática y Comunicaciones presta un doble servicio:
+## Dominios y subdominios
+Un **dominio** es un nombre que identifica un sitio en Internet. Un **subdominio** es una extensión del dominio principal, apuntando a una sección específica del sitio.
 
-Al usuario final: ofrecer los servidores para que puedan navegar por Internet.
-A los administradores de servidores: publicar en Internet los nombres de sus máquinas para que sean accesibles.
+## Búsqueda de dominio DNS
+Divisiones del espacio de nombres DNS llamadas **zonas de búsqueda** contienen información sobre dominios. Estas zonas permiten organizar y gestionar los nombres de dominio eficientemente.
 
--- ¿Que son los dominios y subdominios?
-Un subdominio es una forma de tener un sitio (web) relacionado, como anexo, a una web principal.
-Los subdominios son del tipo: http://subdominio.dominio.com, éstos apuntan realmente a una carpeta del propio alojamiento que has contratado, pero mostrando su contenido desde el subdominio.
+## Tipos de servidores DNS
+- **Servidor recursivo**: Recibe consultas y puede usar caché o reenviar la consulta.
+- **Servidor autoritativo**: Contiene información oficial sobre dominios.
+- **Servidor raíz**: Redirige consultas a servidores autoritativos para dominios superiores.
+- **Resolutor**: Realiza consultas DNS en los dispositivos.
 
--- ¿Que son las busqueda de dominio DNS?
-Las zonas de búsqueda DNS son divisiones organizativas del espacio de nombres DNS que contienen información específica sobre dominios 2. Cada zona representa un nivel en la jerarquía de nombres DNS y contiene registros relacionados con los dominios bajo ese nivel.
+## Registros DNS
+Archivos de mapeo que indican a los servidores la IP correspondiente a un dominio. Tipos:
+- **A**: Dirección IP.
+- **MX**: Servidores de correo.
+- **NS**: Servidores autoritativos.
+- **CNAME**: Aliases de dominios.
+- **PTR**: Mapeo inverso.
+- **SOA**: Información administrativa.
 
-Las zonas de búsqueda DNS sirven para organizar y gestionar eficientemente el sistema de nombres de dominio, permitiendo que los dispositivos puedan comunicarse usando nombres legibles por humanos en lugar de direcciones IP numéricas. Estas zonas dividen el espacio de nombres DNS en segmentos manejables, contienen información específica sobre dominios, dan autoridad a los administradores y facilitan la resolución de nombres. Además, permiten la propagación de cambios y mejoran el rendimiento de la resolución de nombres al facilitar consultas directas entre servidores autoritativos dentro del mismo espacio de nombres. 
+## Consulta recursiva
+Proceso en el cual un servidor DNS recursivo busca información sobre un dominio:
+1. Verifica caché local.
+2. Consulta servidores raíz.
+3. Envía la consulta al servidor autoritativo.
+4. Devuelve la respuesta.
 
+## Consulta iterativa
+Método que distribuye la búsqueda de información entre varios servidores:
+1. Empieza en servidores raíz.
+2. Pasa a servidores autorizados.
+3. Termina en servidores del dominio objetivo.
 
--- Tipos de servidores DNS y sus funciones principales:
-
-Servidor DNS recursivo: Primera parada para consultas recursivas, puede responder con información de caché o reenviar consultas.
-Servidor DNS autoritativo: Contiene información definitiva sobre dominios específicos, proporciona respuestas directamente.
-Servidor DNS de raíz: Contiene información sobre dominios de nivel superior más altos, reenvía consultas al servidor autoritativo correspondiente.
-Resolutor de código auxiliar: Se encuentra en dispositivos finales y realiza consultas DNS para aplicaciones.
-Estos servidores trabajan juntos en una cadena de consultas para traducir nombres de dominio en direcciones IP, permitiendo que los usuarios accedan fácilmente a sitios web usando nombres legibles en lugar de direcciones numéricas.
-
-
--- ¿Que son los registros DNS?
-Los registros DNS son archivos de mapeo que indican a los servidores DNS a qué dirección IP corresponde un dominio particular. Sus principales funciones son:
-
-Traducir nombres de dominio en direcciones IP, permitiendo acceder a sitios web usando nombres legibles.
-Definir servidores de correo electrónico (MX).
-Indicar servidores autorizados para un dominio (NS).
-Crear aliases para dominios existentes (CNAME).
-Mapear direcciones IP a nombres de dominio (PTR).
-Definir información de contacto y administrativa para un dominio (SOA).
-Estos registros permiten configurar cómo se alojan sitios web, qué servidores de correo se utilizan y cómo se manejan otras funcionalidades de dominios en Internet.
-
-
--- Funcionamiento de consulta recursiva
-
-Una consulta recursiva DNS es un proceso en el cual un servidor DNS recursivo busca información sobre un dominio específico siguiendo una serie de pasos. Su principal función es permitir que los usuarios accedan a sitios web utilizando nombres legibles en lugar de direcciones IP numéricas.
-
--- Funciones principales de una consulta recursiva DNS:
-
-Busca información sobre dominios específicos.
-Verifica primero la caché local del servidor recursivo.
-Consulta a servidores de raíz si no hay información en caché.
-Reenvía la consulta al servidor autoritativo apropiado para el dominio.
-Recibe y devuelve la respuesta final al dispositivo original.
-Esta consulta recursiva es fundamental para que los usuarios puedan acceder fácilmente a sitios web usando nombres legibles en lugar de direcciones numéricas. Es un proceso infinito que continúa hasta obtener una respuesta definitiva, característica propia de consultas recursivas en DNS.
-
--- Consulta iterativa
-
-Definición y propósito
-Es un método de resolución DNS que permite buscar información gradualmente.
-Distribuye la carga entre múltiples servidores para mejorar el rendimiento y la fiabilidad.
-Proceso básico
-El resolver comienza consultando servidores de nombres raíces.
-Continúa con servidores autorizados del dominio superior.
-Finaliza en servidores específicos del dominio objetivo.
-Beneficios clave
-Mejora la escalabilidad y reducción de latencia.
-Aumenta la tolerancia a fallos al permitir alternativas rápidas.
-Configuración
-La mayoría de resoladores modernos lo realizan por defecto.
-Requiere configuración adecuada en los servidores DNS.
-Este resumen captura las ideas más esenciales sobre la consulta iterativa DNS, enfocándose en su definición, proceso básico y beneficios principales.
+### Beneficios:
+- Mejora rendimiento y escalabilidad.
+- Tolerancia a fallos al permitir consultas alternativas.
